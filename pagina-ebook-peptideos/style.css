@@ -1,0 +1,914 @@
+/* CSS Reset and Variables */
+:root {
+    --bg-dark: #05050A;
+    --neon-cyan: #00F0FF;
+    --neon-purple: #8A2BE2;
+    --text-main: #FFFFFF;
+    --text-muted: rgba(255, 255, 255, 0.65);
+
+    --font-heading: 'Sora', sans-serif;
+    --font-body: 'Geist', 'Inter', sans-serif;
+
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Typography elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    line-height: 1.1;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* =========================================
+   BACKGROUND & SPOTLIGHT (The Archetype)
+========================================= */
+
+.spotlight {
+    position: fixed;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    height: 80vh;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.08) 0%, rgba(138, 43, 226, 0.03) 40%, rgba(5, 5, 10, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Float Loop Particles (Molecules) */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -2;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--neon-cyan);
+    filter: blur(8px);
+    opacity: 0.3;
+    animation: floatLoop 20s infinite linear;
+}
+
+.p1 {
+    width: 10px;
+    height: 10px;
+    top: 20%;
+    left: 10%;
+    animation-duration: 25s;
+}
+
+.p2 {
+    width: 15px;
+    height: 15px;
+    top: 60%;
+    left: 80%;
+    background: var(--neon-purple);
+    animation-duration: 30s;
+    animation-delay: -5s;
+}
+
+.p3 {
+    width: 8px;
+    height: 8px;
+    top: 80%;
+    left: 30%;
+    animation-duration: 18s;
+    animation-delay: -10s;
+}
+
+.p4 {
+    width: 25px;
+    height: 25px;
+    top: 10%;
+    left: 70%;
+    background: var(--neon-purple);
+    filter: blur(15px);
+    animation-duration: 35s;
+}
+
+.p5 {
+    width: 12px;
+    height: 12px;
+    top: 40%;
+    left: 90%;
+    animation-duration: 22s;
+    animation-delay: -15s;
+}
+
+@keyframes floatLoop {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.2;
+    }
+
+    25% {
+        transform: translateY(-50px) translateX(30px) rotate(90deg);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateY(-100px) translateX(-20px) rotate(180deg);
+        opacity: 0.2;
+    }
+
+    75% {
+        transform: translateY(-50px) translateX(-40px) rotate(270deg);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(0) translateX(0) rotate(360deg);
+        opacity: 0.2;
+    }
+}
+
+/* =========================================
+   GLASSMORPHISM COMPONENTS
+========================================= */
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-neon {
+    display: inline-block;
+    padding: 18px 40px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--bg-dark);
+    background: var(--neon-cyan);
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-neon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+
+.btn-neon:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.btn-neon:hover::before {
+    left: 150%;
+}
+
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 5%;
+    position: relative;
+}
+
+.hero-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.hero-content {
+    padding: 80px 60px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.badge {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--neon-purple);
+    font-weight: 700;
+    background: rgba(138, 43, 226, 0.1);
+    border: 1px solid rgba(138, 43, 226, 0.3);
+    padding: 8px 16px;
+    border-radius: 100px;
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: -0.03em;
+}
+
+.hero-title span {
+    background: linear-gradient(135deg, var(--text-main) 0%, var(--neon-cyan) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   PROBLEM SECTION
+========================================= */
+
+.problem-section {
+    padding: 120px 0;
+    position: relative;
+}
+
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.problem-visual {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glow-orb {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: var(--neon-purple);
+    filter: blur(80px);
+    opacity: 0.4;
+    border-radius: 50%;
+    animation: pulseOrb 8s infinite alternate ease-in-out;
+}
+
+@keyframes pulseOrb {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+/* Abstract glass molecule representation */
+.glass-molecule {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    animation: floatLoop 15s infinite alternate ease-in-out;
+}
+
+.node {
+    position: absolute;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 50%;
+    box-shadow: inset 0 0 15px rgba(0, 240, 255, 0.3), 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+/* Central/Main Node */
+.node.n-core {
+    width: 70px;
+    height: 70px;
+    top: 115px;
+    left: 115px;
+    border-color: var(--neon-purple);
+    box-shadow: inset 0 0 20px rgba(138, 43, 226, 0.4);
+}
+
+/* Orbiting Nodes */
+.node.n1 {
+    width: 40px;
+    height: 40px;
+    top: 20px;
+    left: 130px;
+}
+
+.node.n2 {
+    width: 50px;
+    height: 50px;
+    top: 90px;
+    right: 20px;
+    border-color: var(--neon-purple);
+    box-shadow: inset 0 0 15px rgba(138, 43, 226, 0.3), 0 0 10px rgba(138, 43, 226, 0.2);
+}
+
+.node.n3 {
+    width: 45px;
+    height: 45px;
+    bottom: 30px;
+    right: 80px;
+}
+
+.node.n4 {
+    width: 35px;
+    height: 35px;
+    bottom: 80px;
+    left: 30px;
+    border-color: var(--neon-purple);
+    box-shadow: inset 0 0 15px rgba(138, 43, 226, 0.3), 0 0 10px rgba(138, 43, 226, 0.2);
+}
+
+.node.n5 {
+    width: 30px;
+    height: 30px;
+    top: 60px;
+    left: 40px;
+}
+
+/* Conexões (Lines) */
+.line {
+    position: absolute;
+    background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+    height: 3px;
+    border-radius: 3px;
+    opacity: 0.7;
+    transform-origin: left center;
+}
+
+/* n-core to n1 */
+.line.l1 {
+    width: 80px;
+    top: 150px;
+    left: 150px;
+    transform: rotate(-80deg);
+}
+
+/* n-core to n2 */
+.line.l2 {
+    width: 90px;
+    top: 150px;
+    left: 150px;
+    transform: rotate(-20deg);
+}
+
+/* n-core to n3 */
+.line.l3 {
+    width: 100px;
+    top: 150px;
+    left: 150px;
+    transform: rotate(50deg);
+}
+
+/* n-core to n4 */
+.line.l4 {
+    width: 90px;
+    top: 150px;
+    left: 150px;
+    transform: rotate(140deg);
+}
+
+/* n-core to n5 */
+.line.l5 {
+    width: 80px;
+    top: 150px;
+    left: 150px;
+    transform: rotate(-150deg);
+}
+
+.problem-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 10px;
+}
+
+.section-body {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+}
+
+.section-highlight {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--neon-cyan);
+    border-left: 3px solid var(--neon-purple);
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+/* =========================================
+   MEDIA QUERIES
+========================================= */
+
+@media (max-width: 900px) {
+    .split-layout {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .problem-visual {
+        grid-row: 2;
+        /* Move graphic below text on mobile */
+        height: 300px;
+    }
+
+    .hero-content {
+        padding: 50px 30px;
+    }
+}
+
+/* =========================================
+   SEÇÃO 3: A SOLUÇÃO (SCROLL STORYTELLING)
+========================================= */
+.solution-section {
+    position: relative;
+    padding: 150px 0;
+}
+
+.scroll-wrapper {
+    height: 200vh;
+    position: relative;
+}
+
+.sticky-content {
+    position: sticky;
+    top: 20vh;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+.solution-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 40px;
+}
+
+.reveal-text {
+    font-weight: 500;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.reveal-text span.word {
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.reveal-text span.word.active {
+    color: #FFFFFF;
+}
+
+.reveal-text span.word.highlight.active {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+}
+
+/* =========================================
+   SEÇÃO 4: FLUXO DE DESCOBERTA (O QUE VAI APRENDER)
+========================================= */
+.learn-section {
+    padding: 100px 5%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flow-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Linha da timeline conectando os pontos */
+.flow-line {
+    position: absolute;
+    left: 45px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-purple), transparent);
+    opacity: 0.3;
+}
+
+.flow-step {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.flow-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 50px;
+    flex-shrink: 0;
+}
+
+.step-num {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--neon-cyan);
+    font-weight: 800;
+}
+
+.step-dot {
+    width: 12px;
+    height: 12px;
+    background: #05050A;
+    border: 2px solid var(--neon-cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.flow-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px;
+    flex-grow: 1;
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    backdrop-filter: blur(10px);
+}
+
+.flow-card p {
+    font-weight: 500;
+    font-size: 1.15rem;
+    color: #FFF;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Hover e Efeitos */
+.flow-step:hover .flow-card {
+    transform: translateX(10px);
+    border-color: rgba(138, 43, 226, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(138, 43, 226, 0.05);
+}
+
+.flow-step:hover .step-dot {
+    background: var(--neon-purple);
+    border-color: var(--neon-purple);
+    box-shadow: 0 0 15px var(--neon-purple);
+    transform: scale(1.3);
+}
+
+@media (max-width: 768px) {
+    .flow-step {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .flow-line {
+        left: 30px;
+    }
+
+    .step-indicator {
+        flex-direction: row;
+        width: auto;
+    }
+
+    .flow-card {
+        width: 100%;
+    }
+
+    .flow-step:hover .flow-card {
+        transform: translateY(-5px);
+    }
+}
+
+/* =========================================
+   SEÇÃO 5: DIFERENCIAL E PÚBLICO
+========================================= */
+.differential-section {
+    padding: 140px 5%;
+}
+
+.diff-container {
+    display: flex;
+    gap: 10vw;
+}
+
+.diff-left {
+    flex: 0 0 40%;
+}
+
+.sticky-title {
+    position: sticky;
+    top: 30vh;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    line-height: 1.1;
+}
+
+.font-light.dimmed {
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.font-black.purple {
+    font-weight: 800;
+    color: var(--neon-purple);
+}
+
+.diff-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.diff-block {
+    position: relative;
+    padding-left: 40px;
+    padding-bottom: 50px;
+    opacity: 0.4;
+    transition: opacity 0.6s ease;
+}
+
+.diff-block.active {
+    opacity: 1;
+}
+
+.diff-block p {
+    font-size: 1.35rem;
+    line-height: 1.8;
+}
+
+.line-animated {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cursor-glow {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 3px;
+    height: 0;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 10px var(--neon-cyan);
+    transition: height 0.8s ease;
+}
+
+.diff-block.active .cursor-glow {
+    height: 100%;
+}
+
+@media (max-width: 900px) {
+    .diff-container {
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .diff-left {
+        flex: none;
+    }
+
+    .sticky-title {
+        position: static;
+    }
+}
+
+/* =========================================
+   SEÇÃO 6: OFERTA E PREÇO
+========================================= */
+.offer-section {
+    padding: 160px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glow-orb-bg {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--neon-purple);
+    filter: blur(120px);
+    opacity: 0.3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.offer-card {
+    position: relative;
+    max-width: 600px;
+    width: calc(100% - 2rem);
+    margin: 0 auto;
+    z-index: 1;
+    background: #08080C;
+    border-radius: 24px;
+    padding: 2px;
+    overflow: hidden;
+}
+
+.border-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+    z-index: 0;
+}
+
+.offer-inner {
+    position: relative;
+    background: #08080C;
+    border-radius: 22px;
+    padding: 60px 40px;
+    z-index: 1;
+    text-align: center;
+}
+
+.offer-title {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.price-callout {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.currency {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-right: 5px;
+    color: var(--neon-cyan);
+}
+
+.price-value {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    letter-spacing: -2px;
+    color: #FFF;
+    text-shadow: 0px 4px 60px rgba(0, 240, 255, 0.5);
+}
+
+.offer-body {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.offer-btn {
+    width: 100%;
+}
+
+/* =========================================
+   SEÇÃO 7: FINAL END
+========================================= */
+.final-section {
+    padding: 180px 5% 250px 5%;
+    position: relative;
+}
+
+.final-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.radial-bottom-glow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    height: 50vh;
+    background: radial-gradient(circle at bottom, rgba(138, 43, 226, 0.15) 0%, rgba(0, 240, 255, 0.1) 40%, rgba(5, 5, 10, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.final-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.final-body {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 50px;
+}
+
+.text-bold {
+    font-weight: 700;
+    color: #FFF;
+}
+
+.text-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+.pulse-ring {
+    animation: pulseRing 3s infinite;
+}
+
+@keyframes pulseRing {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 30px rgba(138, 43, 226, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 240, 255, 0);
+    }
+}
