@@ -467,8 +467,21 @@ h3 {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        padding: 6rem 5vw;
+        max-width: 100%;
+    }
+
     .headline {
-        font-size: clamp(1.8rem, 9.5vw, 3.5rem);
+        font-size: clamp(1.6rem, 7.5vw, 2.8rem);
+        overflow-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+    }
+
+    .subheadline {
+        max-width: 100%;
+        font-size: 1rem;
     }
 
     .services-header {
