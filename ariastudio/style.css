@@ -1062,3 +1062,40 @@ h3 {
         bottom: -30vh;
     }
 }
+
+/* Footer Styling */
+.site-footer {
+    padding: 6rem 4vw 2rem;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: transparent;
+}
+
+.footer-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.footer-logo img {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.footer-logo img:hover {
+    opacity: 1;
+}
+
+.footer-copy p {
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    text-align: center;
+    font-family: var(--font-body);
+}
