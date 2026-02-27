@@ -18,6 +18,13 @@
   status = 301
   force = true
 
+# Redirect da raiz vazia para a landing page do Aria Studio
+[[redirects]]
+  from = "/"
+  to = "/ariastudio/"
+  status = 301
+  force = true
+
 # Headers de seguranca
 [[headers]]
   for = "/*"
